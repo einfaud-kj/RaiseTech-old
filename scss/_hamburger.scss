@@ -1,0 +1,58 @@
+@use "sass:math";
+
+$btnWidth: 23px;
+$btnHeight: 2px;
+
+.hamburger {
+  width: 50px;
+  height: 50px;
+  background-color: #fff;
+  position: relative;
+
+  &::before,
+  &::after {
+    content: "";
+    width: $btnWidth;
+    height: $btnHeight;
+    background: #2498b3;
+    position: absolute;
+    left: calc(50% - math.div(#{$btnWidth}, 2));
+    display: block;
+    transition: transform 0.1s;
+  }
+  &::before {
+    top: 17px;
+  }
+  &::after {
+    top: 33px;
+  }
+  > span {
+    width: $btnWidth;
+    height: $btnHeight;
+    font-size: 0;
+    border-top: 3px solid #2498b3;
+    position: absolute;
+    left: calc(50% - math.div(#{$btnWidth}, 2));
+    top: 50%;
+    transition: transform 0.1s;
+  }
+
+  /* ↓は開いたあとの表示方法*/
+
+  &.is-open {
+    background-color: #2498b3;
+    &::before {
+      transform: rotate(45deg);
+      top: 24px;
+      background: #fff;
+    }
+    &::after {
+      transform: rotate(-45deg);
+      top: 24px;
+      background: #fff;
+    }
+    > span {
+      border: none;
+    }
+  }
+}
